@@ -17,3 +17,8 @@ export const fetchUsers = () => {
     company: { name: company.name }
   }));
 };
+
+export const updateUser = user => {
+  // Ideally this should make an API call, but returning the user as is for now
+  return user;
+};

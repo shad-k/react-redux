@@ -58,6 +58,7 @@ const UsersPage = ({ users, fetchUsers }) => {
       </UsersContainer>
       <Route path={`${path}/edit/:id`}>
         {({ match }) => {
+          if (!match) return null;
           const { id } = match.params;
           let userToEdit = data.find(user => user.id === id);
 
