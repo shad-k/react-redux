@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
 
 import { urlFormatter } from "../utils/url";
@@ -7,6 +8,9 @@ const Main = styled.div`
   border-radius: 8px;
   box-shadow: 0 0 4px 0 ${({ theme }) => theme.grey100};
   overflow: hidden;
+  padding-bottom: 20px;
+  position: relative;
+  background-color: ${({ theme }) => theme.blue100};
 `;
 
 const Name = styled.h3`
@@ -18,7 +22,6 @@ const Name = styled.h3`
 `;
 
 const UserDetails = styled.div`
-  background-color: ${({ theme }) => theme.blue100};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -27,10 +30,24 @@ const UserDetails = styled.div`
   min-height: 150px;
 `;
 
+const EditButton = styled(Link)`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 20px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  background-color: ${({ theme }) => theme.white};
+  border-bottom-right-radius: 8px;
+`;
+
 const User = ({
-  user: { name, email, website, address, phone, company },
+  user: { id, name, email, website, address, phone, company },
   className
 }) => {
+  const { url } = useRouteMatch();
+
   return (
     <Main className={className}>
       <Name>{name}</Name>
@@ -49,6 +66,7 @@ const User = ({
         </span>
         <span>{company.name}</span>
       </UserDetails>
+      <EditButton to={`${url}/edit/${id}`}>Edit</EditButton>
     </Main>
   );
 };

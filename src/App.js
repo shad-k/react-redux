@@ -14,7 +14,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <Switch>
-            <Route exact path="/people" component={UsersPage} />
+            <Route path="/people" component={UsersPage} />
           </Switch>
         </Router>
       </ThemeProvider>

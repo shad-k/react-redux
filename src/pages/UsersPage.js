@@ -1,10 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Route, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
 
 import { FETCHING_USERS } from "../actions/users";
 import User from "../components/User";
 import PageLoader from "../components/PageLoader";
+import EditModal from "../components/EditModal";
 
 const Main = styled.main`
   padding: 20px;
@@ -40,6 +42,8 @@ const CustomUser = styled(User)`
 const UsersPage = ({ users, fetchUsers }) => {
   const { data, loading, error } = users;
 
+  const { path } = useRouteMatch();
+
   if (!loading && !error && data.length === 0) {
     fetchUsers();
   }
@@ -52,6 +56,14 @@ const UsersPage = ({ users, fetchUsers }) => {
         {loading && <PageLoader />}
         {!loading && data.map(user => <CustomUser key={user.id} user={user} />)}
       </UsersContainer>
+      <Route path={`${path}/edit/:id`}>
+        {({ match }) => {
+          const { id } = match.params;
+          let userToEdit = data.find(user => user.id === id);
+
+          return <EditModal user={userToEdit} />;
+        }}
+      </Route>
     </Main>
   );
 };
