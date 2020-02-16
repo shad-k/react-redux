@@ -24,6 +24,10 @@ const ModalBody = styled.div`
   margin: 0 auto;
   background-color: ${({ theme }) => theme.white};
   border-radius: 8px;
+
+  @media screen and (min-width: 1000px) {
+    max-width: 50%;
+  }
 `;
 
 const CloseModal = styled.div`
@@ -31,6 +35,7 @@ const CloseModal = styled.div`
   height: 5%;
   font-size: 32px;
   padding: 0 10px;
+  cursor: pointer;
 `;
 
 const Children = styled.div`

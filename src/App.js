@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 
 import UsersPage from "./pages/UsersPage";
+import Home from "./pages/Home";
 
 import store from "./store";
 import theme from "./utils/theme";
@@ -14,7 +15,8 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <Switch>
-            <Route path="/people" component={UsersPage} />
+            <Route path="/users" component={UsersPage} />
+            <Route path="/" component={Home} />
           </Switch>
         </Router>
       </ThemeProvider>
