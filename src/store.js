@@ -8,6 +8,8 @@ const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const logger = store => next => action => {
+  // Avoid logging in tests
+  if (process.env.NODE_ENV === "test") return;
   console.log("dispatching", action);
   let result = next(action);
   console.log("next state", store.getState());
